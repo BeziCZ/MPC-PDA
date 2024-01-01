@@ -1,0 +1,54 @@
+\section{Grafy - algoritmy}
+\subsection{Detekce cyklů}
+\begin{itemize}
+    \item Cyklický graf - graf obsahuje aspoň jeden cyklus
+    \item Pokud neobsahuje, je acyklický
+    \item \textbf{DAG} - Directed Acyclic Graph
+    \item U nesměrovaných grafů lze použít DFS, graf je acyklický v případě že DFS nevrátí již navštívěný uzel
+    \item DFS nelze použít u směrovaných grafů, zde iterativě odstraňujeme uzly s nulovým in-degree. V případě, že skončíme s jedním uzlem, jedná se o DAG
+\end{itemize}
+\subsection{Maďarský algoritmus}
+Algoritmus pro hledání maximální shody - max. matching.
+
+Postup:
+\begin{itemize}
+    \item Problém reprezentujeme maticí
+    \item Nejmenší hodnotu v řádků odečteme od všech hodnot v řádku
+    \item Nejmenší hodnotu v sloupci odečteme od všech hodnot v sloupci
+    \item V matici škrtneme řádky a sloupce tak, aby by vyškrtnuté všechny nuly, a byl použit nejnižší možný počet těcho čar
+    \item V případě že se množství čar= množství řádků matice, máme optimální řešení
+    \item Pokud nemáme optimální řešení, vezmeme nejmenší neškrtnutou hodnotu v každém řádku a přičteme ji k ke každému průsečíku čar.
+    
+\end{itemize}
+\subsection{Node2Vec}
+algoritmus pro generování vektorových reprezentací uzlů v grafu. Rámec node2vec se učí nízkorozměrné reprezentace uzlů v grafu pomocí random walks grafem počínaje cílovým uzlem
+\TODO{no idea, v prezentacích o tom nic pořádně není}
+\subsection{Strongly Connected Components}
+Silně propojený komponent grafu je maximálně silně propojený subgraf
+\subsubsection{Kosrajův algoritmus}
+Postup:
+\begin{itemize}
+    \item DFS pro vypočítání opouštějícího času pro každý uzel
+    \item Výpočet inverzního grafu
+    \item DFS na inverzním grafu, začínáme uzelm s nejvyšší hodnotou opuštění uzlu.
+    \item Navštívené uzly ukládáme do setu SCC
+    \item Po dokončení iterace je komponent uložen, zvolí se další uzel a nacházejí se další komponenty
+    \item Algoritmus je ukončen po navštívení všech uzlů
+\end{itemize}
+\subsubsection{Tarjanův algoritmus}
+\begin{itemize}
+    \item Jednotlivé uzly uchovávají hodnoty "index" a "low"
+    \item Postupně procházíme graf, iteruje se index a low
+    \item po cyklu nastavíme low na nejnižší dosažitelné low předchozích uzlů
+    \item Pokud index=low, uzel je kořen SCC
+    \item Uzly se stejným low tvoří SCC
+\end{itemize}
+\subsection{Izomorfismus}
+Grafy jsou izomorofní v případě, že jsou mezi nimi zachovány jejich základní vlastnosti - cesty, podgrafy. Tedy existuje bijekce která zobrazuje jeden graf na druhý.
+Pro ověření se používá \textbf{Ullmanův algoritmus:}
+\begin{itemize}
+    \item Vytvoříme matici sousednosti pro oba grafy a permutační matici - obsahuje pouze jednu 1 v každém sloupci a řádku
+    \item Matici sousednosti jednoho grafu vynásobíme nejprve s permutační maticí, a výsledek poté znovu vynásobíme s transponovanou permutační maticí
+    \item Pokud se výsledek rovná matici sousednosti druhého grafu, jsou izomorfní
+    \item V opačném případě zkusíme jinou variaci permutační matice, připadně po vyčerpání všech možností perm. matice grafy nejsou izomorfní
+\end{itemize}
