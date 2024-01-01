@@ -1,0 +1,53 @@
+\section{Teorie složitosti}
+\subsection{Druhy složitosti}
+\subsubsection{Polynomiální vs exponenciální složitost}
+\begin{itemize}
+    \item Polynomiální složitost
+    \begin{itemize}
+        \item S délkou vstupu (\(n\)) roste čas potřebný k vyřešení lineárně (\(n^x\)). Tudíž čas potřebný k řešení roste propocionálně, ale ne exponenciálně.
+        \item Lze je řešit bez potřeby vysoké výpočetní síly.
+    \end{itemize}
+    \item Exponeciální složitost
+    \begin{itemize}
+        \item Lze je řešit efektivně bez velkého výpočetního výkonu pouze pro malé vstupy
+        \item Čas potřebný pro řešení roste s počtem vstupů \(n\) exponenciálně \(x^n\)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Třídy složistoti}
+\begin{itemize}
+    \item P
+    \item NC
+    \item NP
+    \item NP-Complete 
+    \item NP-Hard
+    \item \#P
+    \item PSPACE
+    \item NL
+    \item EXP
+    \item EXPSPACE
+\end{itemize}
+
+\subsubsection{Třída P}
+Spadají do ní problémy, které je možné řešit v polynomiálním čas na deterministickém turingově stroji. Spadají sem například problémy jako je nalezení nekratší
+cesty nebo nalezení kostry grafu.
+\subsubsection{Třída NC}
+Podmožina P, která obsahuje problémy, které se dají řešit v polylogaritmickém paralelním čase na polynomiálním počtu procesorů.\\
+Problém se vstupem délky \(n\) je v NC pokud existují konstanty \(k\) a \(c\) takové, že platí \(O(k \cdot log^cn)\) pak je možné vyřešit problém za \(O(log^cn)\)
+na \(O(n^k)\) paralelních procesorech.\\
+P je pro určení míry efektivity algoritmů při sekvenčním provádění a NC je pro určení míry efektivity při paralelním provádění.
+
+\subsubsection{Třída NP}
+Obsahuje problémy, které je možné řešit v polynomiálním čase na nedeterministickém turingově stroji.\\
+\subsubsection{Třída NP-Complete}
+Podmožina NP, která obsahuje nejtěžší problémy v NP. Problém x je NP-Complete pokud je možné za polynomiální transformovat NP problém y na
+problém x. Nebylo pro ně nalezeno polynomiální řešení, ale dokázáno, že řešení existuje. Na deterministickém turingově stroji je možné je řešit pouze za
+exponenciální čas. Pokud by bylo nalezeno řešení v polynomiálním čase pak by to znamenalo, že P=NP, protože nalezení řešení pro jeden NP-Complete problém
+znamená nalezení řešení pro všechny NP-Complete problémy.\\
+Do NP-C spadá například barvení grafů, Knapsack problem(problém batohu), 3-partition problem(rozdělení množiny čísel na trojice se stejným součtem).
+
+\subsubsection{NP-Hard}
+Obsahuje problémy, které jsou alespoň tak těžké jako jsou NP-Complete problémy, ale zároveň se neví jestli patří do NP. Problém x je NP-Hard pokud se na něj
+redukuje problém y který je ze třídy NP-Complete za polynomiální čas. Existují také problémy, které jsou NP-Hard, ale ne NP-Complete,
+například problém zastavení turingova stroje nebo problém splnitelnosti booleovské formule.
+
