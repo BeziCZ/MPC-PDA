@@ -1,5 +1,6 @@
 \section{Teorie složitosti}
 \subsection{Druhy složitosti}
+
 \subsubsection{Polynomiální vs exponenciální složitost}
 \begin{itemize}
     \item Polynomiální složitost
@@ -49,7 +50,7 @@ Do NP-C spadá například barvení grafů, Knapsack problem(problém batohu), 3
 \subsubsection{Třída NP-Hard}
 Obsahuje problémy, které jsou alespoň tak těžké jako jsou NP-Complete problémy, ale zároveň se neví jestli patří do NP. Problém x je NP-Hard pokud se na něj
 redukuje problém y který je ze třídy NP-Complete za polynomiální čas. Existují také problémy, které jsou NP-Hard, ale ne NP-Complete,
-například problém zastavení turingova stroje nebo problém splnitelnosti booleovské formule.
+například problém zastavení turingova stroje nebo problém splnitelnosti booleovské formule, Travelling salesman problem.
 
 \subsubsection{Třída \#P}
 Neřeší hledání řešení problémů, ale řeší hledání počtu možných řešení problému ze třídy NP. Tudíž problémy v této třídě musí být alespoň stejně těžké jako
@@ -59,4 +60,49 @@ daný NP problém.
 Problémy, které lze řešit na deterministickém turingově stroji s polynomiálním objemem paměti. V této třídě nezáleží na času, který je problém řešen.
 Například hledání hodnoty pozice na nekonečně velké hrací ploše šachů.
 
-\
+\subsubsection{Třída NL}
+Třída, která obsahuje rozhodovací algorimy řešitelké na nedeterministickém turingově stroji v logaritmickým objemem paměti. Díky tomu, že třída L(Logarithmic
+space) je podmnožinou třídy P, tak z toho plyne, že jakýkoliv problém v NL je možné vyřešit pomocí deterministického turingova stroje s polynomiálním množstvím
+paměti. Obsahuje podmnožinu problémů NL-Complete, které jsou nejtěžší problémy v NL a jakýkoliv problém z NL na ně lze redukovat. Jejím příkladem je například
+problém dostupnosti v orientovaných grafech.
+
+\subsubsection{Třída EXP}
+Označována také jako EXPTIME. Problémy řešitelné na sekvenčních počítačích v exponenciálním čase. Obsahuje také EXP-Complete problémy
+
+\subsubsection{EXPSPACE}
+Stejné jako EXP, ale místo času řeší paměť
+
+\subsection{Algoritmická řešení}
+
+\subsection{Aproximační algortimy}
+\subsubsection{Genetické algoritmy}
+Založeny na procesu evoluce, řešení jsou reprezentovány vektory řešení. Jedna buňka tohoto vektoru se nazývá gen, reprezentovány pomocí čísel nebo jiných datových
+struktur podle problému. Základní operace v GA, mutace je změna jednotlivého genu, crossover je vyměňování genů mezi jednotlivci. Pok křízení a mutaci se generuje
+nová populace. Hledání nejlepších kandidátů pomocí fitness funkce.
+
+\subsubsection{Genetické programování}
+Reprezentace pomocí stromu. Stejný princip jako genetické algorimy mutace je však změna části podstromu, křízení je prohození podstromu mezi různými stromy. 
+Obsahuje funce a terminály, kde terminály jsou prvky v listech stomu, které nemají vlastní potomky. 
+
+\subsubsection{Optimalizace rojem částic}
+Každá částice se pomocí aktualizace své pozice v prostoru (2D, 3D) snaží najít optimální řešení problému. Každá z částic si udržuje informace o vlastní poloze, nejlepší poloze
+kterou kdy dosáhla(kokální optimum) a nejlepší poloze nalezenou kteroukoliv částicí v roji(globální optimum). 
+\begin{gather*}
+    X(t+1) = X(t) + V(T+1)\\
+    V(t+1) = W\cdot V(t) + C_1\cdot rand()X(X_{pbest}-X(t)) + C_2\cdot rand()X(X_{gbest}-X(t))
+\end{gather*}
+kde \(V(t)\) je rychlost v čase \(t\), \(X(t)\) je pozice v čase \(t\), \(W\) je váha, \(C_1\) a \(C_2\) jsou učící a akcelerační faktory, \(rand()\) je náhodné
+číslo v intervalu inkluzivním intervalu mezi 0 a 1 s normálním rozdělením, \(X_ {pbest}\) je lokální optimum a \(X_{gbest}\) je globální optimum. \\
+Obecně algorimus funguje tak, že dokud není splněna podmínka terminace 
+
+\subsubsection{Optimalizace mravenčí kolonií}
+Jednotliví mravenci reprezentují částečná řešení. Mravenci postupují prostorem a tím krok po kroku budují řešení. Jejich pohyb je založen na feromonech a na 
+stochastických parametrech. Poté se vyhledá lokální minimum. Nakonec se aktualizují feromony pozitivně pro ty cesty, které jsou dobré a negativně pro cesty, které
+jsou špatné. Toto proces se opakuje dokud není splněna ukončující podmínka.\\
+Narozdíl od ostatních aproximačních algoritmů nepoužívá křízení, ale pouze mutaci. Jednotlivci jsou reprezentováni pomocí páru číselných vektorů \(\mathbf{v} =
+(\mathbf{x},\boldsymbol{\sigma})\). Kde \(\mathbf{x}\) bod ve stavovém prostoru reprezentovaný vektorem čísel a \(\boldsymbol{\sigma}\) je vektor směrodatné 
+odchylky. Mutace pak probíhá:\\
+\begin{gather*}
+    \mathbf{x}^{t+1} = \mathbf{x}^t + N(0, \boldsymbol{\sigma})
+\end{gather*}
+Kde N je náhodné číslo z funce gaussova normálního rozdělení se směrodatnou odchylkou \(\boldsymbol{\sigma}\) a průměrem 0
