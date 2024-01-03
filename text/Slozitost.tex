@@ -72,9 +72,18 @@ Označována také jako EXPTIME. Problémy řešitelné na sekvenčních počít
 \subsubsection{EXPSPACE}
 Stejné jako EXP, ale místo času řeší paměť
 
-\subsection{Algoritmická řešení}
+\subsection{Typy algoritmů pro řešení}
+\begin{itemize}
+    \item Brute force
+    \item Backtracking - trochu lepší BF, zkouší sekvence možností, ale opouští je pokud zjistí, že možnost nevede k celému řešení
+    \item Dynamic programming - rozděluje problém na subproblémy a ukládá řešení každého podproblému aby se vyhnul opakování výpočtu
+    \item Greedy algoritmy - provádí sekvenci rozhodnutí volbou nelepších možností, bez ohledu na globální konsekvence. Negarantuje optimální řešení
+    \item Aproximační algoritmy - poskytuje řešení, které je blízko optimálnímu v rámci určitého faktoru
+    \item Heuristické algoritmy - strategie, kterých výsledek je často dobré řešení, ale negarantují optimalitu
+\end{itemize}
 
-\subsection{Aproximační algortimy}
+
+\subsection{Heuristické a aproximační algortimy}
 \subsubsection{Genetické algoritmy}
 Založeny na procesu evoluce, řešení jsou reprezentovány vektory řešení. Jedna buňka tohoto vektoru se nazývá gen, reprezentovány pomocí čísel nebo jiných datových
 struktur podle problému. Základní operace v GA, mutace je změna jednotlivého genu, crossover je vyměňování genů mezi jednotlivci. Po křízení a mutaci se generuje
